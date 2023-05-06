@@ -12,7 +12,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username: req.body.email });
 
     if (!user) res.status(404).send("User not found!");
 
