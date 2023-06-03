@@ -63,15 +63,15 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
   try {
-    const user = await User.findOne({ name: req.body.name });
-    if (!user) return next(createError(404, "User not found!"));
+    const email = await User.findOne({ email: req.body.email });
+    if (!email) return next(createError(404, "User or email not found!"));
 
-    const isCorrect = bcrypt.compare(req.body.password, user.password);
+    const isCorrect = bcrypt.compare(req.body.password, email.password);
 
     if (!isCorrect) return next(createError(400, "Wrong Credentials!"));
 
-    const token = jwt.sign({ id: user._id }, "agsjdg7657HGDAJ67rjdhgadhkjf");
-    const { password, ...others } = user._doc;
+    const token = jwt.sign({ id: email._id }, "agsjdg7657HGDAJ67rjdhgadhkjf");
+    const { password, ...others } = email._doc;
 
     res
       .cookie("access_token", token, {
