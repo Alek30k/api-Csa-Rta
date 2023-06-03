@@ -22,14 +22,7 @@ const connect = () => {
     });
 };
 
-app.use(
-  cors({
-    origin: "https://csarta-7k96h3cza-alek30k.vercel.app/",
-    credentials: true,
-  })
-);
-
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
