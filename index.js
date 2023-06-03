@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 
-const PORT = process.env.PORT || 8800;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   connect();
