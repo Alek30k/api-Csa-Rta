@@ -23,19 +23,20 @@ export const signin = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "User or email not found!"));
 
-    const isCorrect = bcrypt.compare(req.body.password, user.password);
+    const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
-    if (!isCorrect) return next(createError(400, "Wrong Credentials!"));
+    if (!isCorrect)
+      return next(createError(400, "Wrong password or username!"));
 
-    const token = jwt.sign({ id: email._id }, "agsjdg7657HGDAJ67rjdhgadhkjf");
-    const { password, ...others } = email._doc;
+    const token = jwt.sign({ id: user._id }, "agsjdg7657HGDAJ67rjdhgadhkjf");
 
+    const { password, ...info } = user._doc;
     res
-      .cookie("access_token", token, {
+      .cookie("accessToken", token, {
         httpOnly: true,
       })
       .status(200)
-      .json(others);
+      .send(info);
   } catch (err) {
     next(err);
   }
