@@ -10,12 +10,12 @@
 // export default router;
 
 import express from "express";
-import { googleAuth, login, signup } from "../controllers/auth.controller.js";
+import { googleAuth, login, logout } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
 //CREATE A USER
-router.post("/signup", signup);
+router.post("/signup", logout);
 
 //SIGN IN
 router.post("/login", login);
