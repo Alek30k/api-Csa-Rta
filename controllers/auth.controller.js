@@ -4,18 +4,14 @@ import bcrypt from "bcryptjs";
 import { createError } from "../error.js";
 import jwt from "jsonwebtoken";
 
-export const logout = async (req, res, next) => {
-  try {
-    const hash = bcrypt.hashSync(req.body.password, 10);
-    const newUser = new User({
-      ...req.body,
-      password: hash,
-    });
-    await newUser.save();
-    res.status(201).send("User has been created.");
-  } catch (error) {
-    next(error);
-  }
+export const logout = async (req, res) => {
+  res
+    .clearCookie("accessToken", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .send("User has been logged out.");
 };
 
 export const login = async (req, res, next) => {
