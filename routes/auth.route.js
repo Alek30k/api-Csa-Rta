@@ -16,7 +16,6 @@ import {
   logout,
   register,
 } from "../controllers/auth.controller.js";
-import Register from "../../CsaRta/src/pages/register/Register.jsx";
 
 const router = express.Router();
 
