@@ -16,7 +16,7 @@ export const logout = async (req, res) => {
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
 
     if (!user) return next(createError(404, "User not found!"));
 
