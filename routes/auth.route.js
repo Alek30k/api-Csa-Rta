@@ -10,7 +10,13 @@
 // export default router;
 
 import express from "express";
-import { googleAuth, login, logout } from "../controllers/auth.controller.js";
+import {
+  googleAuth,
+  login,
+  logout,
+  register,
+} from "../controllers/auth.controller.js";
+import Register from "../../CsaRta/src/pages/register/Register.jsx";
 
 const router = express.Router();
 
@@ -19,6 +25,9 @@ router.post("/logout", logout);
 
 //SIGN IN
 router.post("/login", login);
+
+//REGISTER
+router.post("/register", register);
 
 //GOOGLE AUTH
 router.post("/google", googleAuth);

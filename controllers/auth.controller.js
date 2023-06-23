@@ -44,6 +44,20 @@ export const login = async (req, res, next) => {
   }
 };
 
+export const register = async (req, res, next) => {
+  try {
+    const hash = bcrypt.hashSync(req.body.password, 5);
+    const newUser = new User({
+      ...req.body,
+      password: hash,
+    });
+    await newUser.save();
+    res.status(201).send("User has been created.");
+  } catch (error) {
+    next(err);
+  }
+};
+
 export const googleAuth = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
