@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
+import productRoute from "./routes/product.route.js";
 
 const app = express();
 dotenv.config();
@@ -35,10 +36,11 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
+app.listen(8800, () => {
   connect();
   console.log("Backend server is running!");
 });
