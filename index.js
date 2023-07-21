@@ -40,7 +40,7 @@ app.use("/api/products", productRoute);
 
 const PORT = process.env.PORT;
 
-app.listen(8800, () => {
+app.listen(PORT, () => {
   connect();
   console.log("Backend server is running!");
 });
